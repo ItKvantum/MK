@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang='ru'>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>{% block title %}{% endblock title %}</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+	<!-- Подключаем CSS Bootstrap'a -->
+    <link rel="stylesheet" href="/static/css/bootstrap.css">
+    
+    <link rel="stylesheet" href="/static/css/MK.css">
+
+
+    <!-- Последняя компиляция и сжатый CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- Последняя компиляция и сжатый JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <meta name="msapplication-config" content="/docs/4.4/assets/img/favicons/browserconfig.xml">
+    <meta name="theme-color" content="#563d7c">
+
+<script ></script><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+<script type="text/javascript">
+   (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+   m[i].l=1*new Date();k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+   (window, document, "script", "ym");
+
+   ym(23928760, "init", {
+        clickmap:true,
+        trackLinks:true,
+        accurateTrackBounce:true,
+        webvisor:true
+   });
+</script>
+</head>
+
+<body style="background: #F8EEE6;"></body> 
+	<header>
+		<nav class="container" >
+            <div class="nav-toggle"><span></span></div>
+			<ul id="menu" class="menu-main" align="center">
+				<li><a href="/">Главная</a></li>
+				<li><a href="/geo">Гео/Био</a></li>
+				<li><a href="/it">IT</a></li>
+				<li><a href="/robo">Робо</a></li>
+				<li><a href="/ar_vr">AR/VR</a></li>
+                {% if not current_user.has_role('admin') %}
+                <li><a href="/login">Войти</a></li>
+                {% endif %}
+                {% if current_user.has_role('admin') %}
+                <li><a href="{{ url_for('posts.create_post') }}">Создать пост</a></li>
+                <li><a href="/admin">Админ</a></li>
+                {% endif %}
+            </ul>
+        </nav>
+    </header>
+    
+{% block body %}
+{% endblock body %}	
+	
+<script>
+$('.nav-toggle').on('click', function(){
+	$('#menu').toggleClass('active');
+});
+</script>
+<script src="/static/js/app.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+
+<iframe name="ym-native-frame" title="ym-native-frame" frameborder="0" aria-hidden="true" style="opacity: 0 !important; width: 0px !important; height: 0px !important; position: absolute !important; left: 100% !important; bottom: 100% !important; border: 0px !important;"></iframe>
+<ym-measure class="ym-viewport" style="display: block; top: 0px; right: 0px; bottom: 0px; left: 0px; position: fixed; transform: translate(0px, -100%); transform-origin: 0px 0px;"></ym-measure>
+<ym-measure class="ym-zoom" style="bottom: 100%; position: fixed; width: 100vw;"></ym-measure>
+</body>
+</html>
